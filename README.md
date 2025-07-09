@@ -1,0 +1,1 @@
+This is a personal project for data pipeline construction. The pipeline is to extract weather data from open API and load the data into dbt for further transformation and analytics. I used Airflow to orchestrate the pipeline.
