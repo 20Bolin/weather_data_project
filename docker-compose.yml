@@ -20,9 +20,10 @@ services:
     ports:
       - "8000:8080"
     environment:
-      AIRFLOW_DATABASE_SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@db:5432/airflow_db
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@db:5432/airflow_db
     volumes: 
       - ./airflow/dags:/opt/airflow/dags
+      - ./api_request:/opt/airflow/api_request
     depends_on:
       - db
     networks:
