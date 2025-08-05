@@ -31,6 +31,21 @@ services:
     command: >
       bash -c "airflow db migrate && airflow standalone"
 
+  dbt:
+    container_name: dbt_container
+    image: ghcr.io/dbt-labs/dbt-postgres:1.9.latest
+    volumes: 
+      - ./dbt/my_project:/user/app     # Calvin uses usr instead of user
+      - ./dbt:/root/.dbt
+    working_dir: /user/app
+    environment:
+      DBT_PROFILES_DIR: "/root/.dbt"
+    depends_on:
+      - db
+    networks:
+      - my-network
+    command: run
+
 networks:
   my-network:
     driver: bridge
